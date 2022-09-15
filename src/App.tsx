@@ -1,26 +1,60 @@
+import { NewsKitProvider, Tag, newskitLightTheme, newskitDarkTheme, CardInset, Stack, Button, Block, Flag, Headline } from 'newskit';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+export default class App extends React.Component {
+  render() {
+    return (
+      <NewsKitProvider theme={newskitLightTheme} >
+        <Tag
+          href="http://example.com"
+          size="medium">
+          Tag Content
+        </Tag>
+
+        <CardInset
+          href="#"
+          media={{
+            src: 'static/placeholder-3x2.png',
+            alt: 'Card Media',
+          }}
+          actions={cardSmallTags}
+          overrides={{
+            stylePreset: 'cardContainer',
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          <Block spaceStack="space020">
+            <Flag
+              overrides={{
+                spaceInset: 'spaceInsetSquish000',
+                stylePreset: 'cardLabel',
+                typographyPreset: 'utilityLabel010',
+              }}
+            >
+            </Flag>
+            <Headline
+              kickerText="CROWDS HEAD"
+              overrides={{
+                typographyPreset: 'editorialHeadline030',
+              }}
+            >
+              outdoors as bank holiday temps soar above 20 degrees
+            </Headline>
+          </Block>
+
+        </CardInset>
+        <Button size="large">Button</Button>
+      </NewsKitProvider>
+    )
+  }
 }
 
-export default App;
+const cardSmallTags = () => (
+  <Stack flow="horizontal-center" spaceInline="space040">
+    <Tag size="small" href="#">
+      News
+    </Tag>
+    <Tag size="small" href="#">
+      Sport
+    </Tag>
+  </Stack>
+);
